@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.service;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -10,12 +10,12 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 
 public class GetACircuitBreaker extends HystrixCommand<ADto>{
 
-	protected GetACircuitBreaker(HystrixCommandGroupKey group) {
+	public GetACircuitBreaker(HystrixCommandGroupKey group) {
 		super(group);
 	}
 
 	@Override
-	protected ADto run() throws Exception {
+	public ADto run() throws Exception {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		ADto value_a = (ADto)restTemplate.exchange("http://localhost:8081/B", HttpMethod.GET,null
